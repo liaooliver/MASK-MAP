@@ -1,28 +1,42 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" class="full-page" v-if="sites.length">
+    <div class="sidebar">
+      <SideBar :sites="sites" />
+    </div>
+    <div class="map" >
+      <Maps :sites="sites" />
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import SideBar from '@/components/Search/SideBar.vue';
+import Maps from './components/Maps.vue';
 
 export default {
   name: 'App',
+  data() {
+    return {
+      sites: [],
+    };
+  },
   components: {
-    HelloWorld,
+    SideBar,
+    Maps,
+  },
+  created() {
+    this.$http.get('https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json')
+      .then((res) => {
+        // const { length } = res.data.features.length;
+        for (let i = 0; i < 100; i += 1) {
+          this.sites.push(res.data.features[i]);
+        }
+      });
   },
 };
+
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import './assets/styles/main.scss';
 </style>

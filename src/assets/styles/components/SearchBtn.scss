@@ -1,0 +1,29 @@
+.SearchBtn{
+    width: 100%;
+    display: flex;
+    &__group{
+        width: 275px;
+        height: 40px;
+        margin: 0px auto;
+        margin-bottom: 16px;
+        > button{
+            width: 84px;
+            height: 36px;
+            border: 1px solid #EAEAEA;
+            border-radius: 7px;
+            opacity: 1;
+            margin-right: 11px;
+            &:last-child{
+                margin-right: 0px;
+            }
+        }
+        &--active{
+            color: #fff;
+            background: #D65600 0% 0% no-repeat padding-box;
+        }
+        &--disabled{
+            color: #CCCCCC;
+            background: #FFFFFF 0% 0% no-repeat padding-box;
+        }
+    }
+}
