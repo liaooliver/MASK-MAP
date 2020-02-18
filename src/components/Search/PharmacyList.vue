@@ -1,5 +1,5 @@
 <template>
-    <section class="PharmacyLists">
+    <section class="PharmacyLists" >
         <ul class="PharmacyLists__list">
             <li class="PharmacyLists__card"
             v-for="site in siteList"
@@ -52,32 +52,47 @@ export default {
       siteList: [],
     };
   },
+  watch: {
+    sites: {
+      handler(newValue) {
+        this.sites = newValue;
+        this.filterData(this.sites);
+      },
+      deep: true,
+    },
+  },
   mounted() {
-    this.sites.forEach((site) => {
-      const { properties } = site;
-      this.siteList.push({
-        id: properties.id,
-        name: properties.name,
-        address: properties.address,
-        mask_adult: properties.mask_adult,
-        mask_adult_status: this.filterStatus(properties.mask_adult),
-        mask_child: properties.mask_child,
-        mask_child_status: this.filterStatus(properties.mask_child),
-      });
-    });
+    this.filterData(this.sites);
   },
   methods: {
+    filterData(array) {
+      const _ = this;
+      this.siteList.length = 0;
+      array.forEach((site) => {
+        const { properties, geometry } = site;
+        _.siteList.push({
+          id: properties.id,
+          name: properties.name,
+          address: properties.address,
+          mask_adult: properties.mask_adult,
+          mask_adult_status: _.filterStatus(properties.mask_adult),
+          mask_child: properties.mask_child,
+          mask_child_status: _.filterStatus(properties.mask_child),
+          lat: geometry.coordinates[1],
+          lng: geometry.coordinates[0],
+        });
+      });
+    },
     filterStatus(stock) {
       const status = [0, 0, 0];
-      if (stock > 50) status[2] = 1;
+      if (stock >= 50) status[2] = 1;
       if (stock < 50 && stock > 20) status[1] = 1;
-      if (stock < 20) status[0] = 1;
+      if (stock <= 20) status[0] = 1;
       return status;
     },
     getPharmacy(info) {
-      const lat = info.geometry.coordinates[1];
-      const lng = info.geometry.coordinates[0];
       console.log(info);
+      const { lat, lng } = info;
       this.$store.dispatch('assigned', { lat, lng });
     },
   },

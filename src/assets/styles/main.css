@@ -1,0 +1,224 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+* {
+  -webkit-box-sizing: border-box !important;
+          box-sizing: border-box !important;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.full-page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100vh;
+}
+
+.full-page .sidebar {
+  width: 315px;
+  height: 100%;
+}
+
+.full-page .map {
+  width: calc(100vw - 315px);
+  height: 100%;
+}
+
+.SearchField {
+  width: 100%;
+}
+
+.SearchField__search {
+  width: 275px;
+  height: 40px;
+  margin: 16px auto;
+  position: relative;
+}
+
+.SearchField__search--input {
+  width: 100%;
+  height: 100%;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  -webkit-box-shadow: 0px 0px 6px #00000029;
+          box-shadow: 0px 0px 6px #00000029;
+  border-radius: 10px;
+  border: 0px;
+  opacity: 1;
+  padding-left: 16px;
+  text-align: left;
+  font: Regular 16px/21px Roboto;
+  letter-spacing: 0;
+  color: #CCCCCC;
+  opacity: 1;
+}
+
+.SearchField__search--icon {
+  position: absolute;
+  top: 26%;
+  right: 5%;
+  cursor: pointer;
+}
+
+.SearchBtn {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.SearchBtn__group {
+  width: 275px;
+  height: 40px;
+  margin: 0px auto;
+  margin-bottom: 16px;
+}
+
+.SearchBtn__group > button {
+  width: 84px;
+  height: 36px;
+  border: 1px solid #EAEAEA;
+  border-radius: 7px;
+  opacity: 1;
+  margin-right: 11px;
+}
+
+.SearchBtn__group > button:last-child {
+  margin-right: 0px;
+}
+
+.SearchBtn__group--active {
+  color: #fff;
+  background: #D65600 0% 0% no-repeat padding-box;
+}
+
+.SearchBtn__group--disabled {
+  color: #CCCCCC;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+}
+
+.PharmacyLists {
+  width: 100%;
+  height: calc(100% - 264px);
+  overflow: auto;
+}
+
+.PharmacyLists__list {
+  width: 100%;
+}
+
+.PharmacyLists__card {
+  padding: 12px 20px 12px 20px;
+  border-top: 1px solid #EAEAEA;
+}
+
+.PharmacyLists__card:last-child {
+  border-bottom: 1px solid #EAEAEA;
+}
+
+.PharmacyLists__card--title {
+  text-align: left;
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 0;
+  color: #333333;
+  opacity: 1;
+}
+
+.PharmacyLists__card--content {
+  text-align: left;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 0;
+  color: #666666;
+  opacity: 1;
+}
+
+.PharmacyLists__paragraph {
+  margin-bottom: 6px;
+}
+
+.PharmacyLists__status {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 8px 0px;
+}
+
+.PharmacyLists__status--item {
+  width: 130px;
+  border-radius: 10px;
+  font-size: 14px;
+  text-align: center;
+  padding: 8px 16px 8px 16px;
+  letter-spacing: 0;
+  opacity: 1;
+}
+
+.PharmacyLists__status--low {
+  background: #ffddd0;
+  color: #E6541D;
+}
+
+.PharmacyLists__status--amid {
+  background: #ffeebe;
+  color: #FF973B;
+}
+
+.PharmacyLists__status--high {
+  background: #cdfad3;
+  color: #46C657;
+}
+/*# sourceMappingURL=main.css.map */

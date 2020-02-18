@@ -1,9 +1,10 @@
 <template>
-  <div id="app" class="full-page" v-if="sites.length">
-    <div class="sidebar">
+
+  <div id="app" class="full-page" >
+    <div class="sidebar" v-if="sites.length > 0">
       <SideBar :sites="sites" />
     </div>
-    <div class="map" >
+    <div class="map" v-if="sites.length > 0">
       <Maps :sites="sites" />
     </div>
   </div>
@@ -27,10 +28,10 @@ export default {
   created() {
     this.$http.get('https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json')
       .then((res) => {
-        this.sites = res.data.features;
-        // for (let i = 0; i < 100; i += 1) {
-        //   this.sites.push(res.data.features[i]);
-        // }
+        // this.sites = res.data.features;
+        for (let i = 0; i < 100; i += 1) {
+          this.sites.push(res.data.features[i]);
+        }
       });
   },
 };

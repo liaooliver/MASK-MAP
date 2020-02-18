@@ -1,0 +1,37 @@
+.SearchBtn {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.SearchBtn__group {
+  width: 275px;
+  height: 40px;
+  margin: 0px auto;
+  margin-bottom: 16px;
+}
+
+.SearchBtn__group > button {
+  width: 84px;
+  height: 36px;
+  border: 1px solid #EAEAEA;
+  border-radius: 7px;
+  opacity: 1;
+  margin-right: 11px;
+}
+
+.SearchBtn__group > button:last-child {
+  margin-right: 0px;
+}
+
+.SearchBtn__group--active {
+  color: #fff;
+  background: #D65600 0% 0% no-repeat padding-box;
+}
+
+.SearchBtn__group--disabled {
+  color: #CCCCCC;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+}
+/*# sourceMappingURL=SearchBtn.css.map */

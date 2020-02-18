@@ -1,0 +1,76 @@
+.PharmacyLists {
+  width: 100%;
+  height: calc(100% - 264px);
+  overflow: auto;
+}
+
+.PharmacyLists__list {
+  width: 100%;
+}
+
+.PharmacyLists__card {
+  padding: 12px 20px 12px 20px;
+  border-top: 1px solid #EAEAEA;
+}
+
+.PharmacyLists__card:last-child {
+  border-bottom: 1px solid #EAEAEA;
+}
+
+.PharmacyLists__card--title {
+  text-align: left;
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 0;
+  color: #333333;
+  opacity: 1;
+}
+
+.PharmacyLists__card--content {
+  text-align: left;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 0;
+  color: #666666;
+  opacity: 1;
+}
+
+.PharmacyLists__paragraph {
+  margin-bottom: 6px;
+}
+
+.PharmacyLists__status {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 8px 0px;
+}
+
+.PharmacyLists__status--item {
+  width: 130px;
+  border-radius: 10px;
+  font-size: 14px;
+  text-align: center;
+  padding: 8px 16px 8px 16px;
+  letter-spacing: 0;
+  opacity: 1;
+}
+
+.PharmacyLists__status--low {
+  background: #ffddd0;
+  color: #E6541D;
+}
+
+.PharmacyLists__status--amid {
+  background: #ffeebe;
+  color: #FF973B;
+}
+
+.PharmacyLists__status--high {
+  background: #cdfad3;
+  color: #46C657;
+}
+/*# sourceMappingURL=PharmacyList.css.map */
