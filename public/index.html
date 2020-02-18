@@ -4,10 +4,19 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta
+      name="description"
+      content="健保特約藥局口罩購買地點，整合政府即時口罩供應資訊，每 10 分鐘更新資料"
+    />
+    <meta
+      property="og:description"
+      content="健保特約藥局口罩購買地點，整合政府即時口罩供應資訊，每 10 分鐘更新資料"
+    />
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
     <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key="></script>
+    <script src="<%= htmlWebpackPlugin.options.apiUrl %>"></script>
   </head>
   <body>
     <noscript>

@@ -27,10 +27,10 @@ export default {
   created() {
     this.$http.get('https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json')
       .then((res) => {
-        // const { length } = res.data.features.length;
-        for (let i = 0; i < 100; i += 1) {
-          this.sites.push(res.data.features[i]);
-        }
+        this.sites = res.data.features;
+        // for (let i = 0; i < 100; i += 1) {
+        //   this.sites.push(res.data.features[i]);
+        // }
       });
   },
 };
