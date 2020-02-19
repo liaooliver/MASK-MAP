@@ -17,13 +17,13 @@
                 margin-right: 0px;
             }
         }
-        &--active{
-            color: #fff;
-            background: #D65600 0% 0% no-repeat padding-box;
-        }
         &--disabled{
             color: #CCCCCC;
             background: #FFFFFF 0% 0% no-repeat padding-box;
+        }
+        &--active{
+            color: #fff;
+            background: #D65600 0% 0% no-repeat padding-box;
         }
     }
 }

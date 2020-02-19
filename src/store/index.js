@@ -9,20 +9,29 @@ export default new Vuex.Store({
       lat: null,
       lng: null,
     },
+    sortByType: { sortBy: 'all' },
   },
   mutations: {
     assigned(state, payload) {
       state.panToLocation.lat = payload.lat;
       state.panToLocation.lng = payload.lng;
     },
+    sortByType(state, payload) {
+      state.sortByType.sortBy = payload;
+      console.log(state.sortByType);
+    },
   },
   actions: {
     assigned(context, payload) {
       context.commit('assigned', payload);
     },
+    sortByType(context, payload) {
+      context.commit('sortByType', payload);
+    },
   },
   getters: {
     sendPanTo: (state) => state.panToLocation,
+    triggerSort: (state) => state.sortByType,
   },
   modules: {
   },

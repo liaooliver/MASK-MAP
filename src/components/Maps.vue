@@ -23,7 +23,8 @@ export default {
   watch: {
     moveToPosition: {
       handler(val) {
-        this.lanuchPanTO(val, { zoom: 14 });
+        console.log(val);
+        // this.lanuchPanTO(val, { zoom: 14 });
       },
       deep: true,
     },
@@ -82,14 +83,7 @@ export default {
         });
 
         maps.event.addListener(marker, 'click', () => {
-          console.log(marker);
-          _.infoWindow.setContent(
-            `
-            <h1>${properties.name}</h1><br>
-            <p>${properties.address}</p>
-            <p>聯絡電話 | ${properties.phone}</p>
-            `,
-          );
+          _.infoWindow.setContent(_.createMarker(properties));
           _.infoWindow.open(_.map, marker);
         });
         return marker;
@@ -100,6 +94,47 @@ export default {
           gridSize: 70,
         });
       markerCluster();
+    },
+    createMarker(properties) {
+      return `
+        <h1 style="font-weight:bold;">${properties.name}</h1>
+        <p>${properties.address}</p>
+        <p>聯絡電話｜${properties.phone}</p>
+        <p>更新時間｜${properties.updated}</p>
+        <div style="display:flex;justify-content: space-between; margin-top:6px;">
+          ${this.makeRank(properties.mask_adult)}
+          ${this.makeRank(properties.mask_child)}
+        </div>
+      `;
+    },
+    makeRank(number) {
+      let button;
+      if (number >= 50) {
+        button = `
+        <button 
+        style="width:45%;border:0px; padding:5px;border-radius:5px;
+        background:#cdfad3; color:#46C657">
+          ${number}
+        </button>
+        `;
+      } else if (number < 50 && number > 20) {
+        button = `
+        <button 
+        style="width:45%;border:0px; padding:5px;border-radius:5px;
+        background:#ffeebe; color:#FF973B">
+          ${number}
+        </button>
+        `;
+      } else if (number <= 20) {
+        button = `
+        <button 
+        style="width:45%;border:0px; padding:5px;border-radius:5px;
+        background:#ffddd0; color:#E6541D">
+          ${number}
+        </button>
+        `;
+      }
+      return button;
     },
   },
 };

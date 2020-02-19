@@ -52,8 +52,10 @@ export default {
   },
   data() {
     return {
+      tempSites: [],
       siteList: [],
       initLnegth: 0,
+      triggerSort: this.$store.getters.triggerSort,
     };
   },
   watch: {
@@ -66,14 +68,17 @@ export default {
       },
       deep: true,
     },
+    triggerSort: {
+      handler(newValue) {
+        this.filterPharmacybyType(newValue.sortBy);
+      },
+      deep: true,
+    },
   },
   mounted() {
     this.filterData(this.sites);
   },
   methods: {
-    scrollEvent(event) {
-      console.log(event.srcElement.scrollHeight);
-    },
     morePharmacy(event) {
       event.preventDefault();
       this.filterData(this.sites, 10);
@@ -109,9 +114,20 @@ export default {
       return status;
     },
     getPharmacy(info) {
-      console.log(info);
       const { lat, lng } = info;
       this.$store.dispatch('assigned', { lat, lng });
+    },
+    filterPharmacybyType(type) {
+      switch (type) {
+        case 'adult':
+          this.siteList = this.siteList.sort((a, b) => b.mask_adult - a.mask_adult);
+          break;
+        case 'child':
+          this.siteList = this.siteList.sort((a, b) => b.mask_child - a.mask_child);
+          break;
+        default:
+          break;
+      }
     },
   },
 };
