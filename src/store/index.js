@@ -22,10 +22,7 @@ export default new Vuex.Store({
     },
   },
   getters: {
-    sendPanTo: (state) => {
-      console.log(state.panToLocation);
-      return state.panToLocation;
-    },
+    sendPanTo: (state) => state.panToLocation,
   },
   modules: {
   },
