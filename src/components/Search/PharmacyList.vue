@@ -3,11 +3,15 @@
         <ul class="PharmacyLists__list" @scroll="scrollEvent()">
             <li class="PharmacyLists__card"
             v-for="site in siteList"
-            :key="site.id"
-            @click="getPharmacy(site)">
-                <h4 class="PharmacyLists__card--title PharmacyLists__paragraph">
-                    {{ site.name }}
-                </h4>
+            :key="site.id">
+                <div class="PharmacyLists__title PharmacyLists__paragraph">
+                  <h4 class="PharmacyLists__title--store">
+                      {{ site.name }}
+                  </h4>
+                  <span class="PharmacyLists__title--point" @click="getPosistion(site)">
+                    <img width="28px" src="../../assets/map.png" alt="map Icon">
+                  </span>
+                </div>
                 <p class="PharmacyLists__card--content  PharmacyLists__paragraph">
                     {{ site.address }}
                 </p>
@@ -79,6 +83,14 @@ export default {
     this.filterData(this.sites);
   },
   methods: {
+    getPosistion(site) {
+      const {
+        lat, lng, name, property,
+      } = site;
+      this.$store.dispatch('assigned', {
+        lat, lng, name, property,
+      });
+    },
     morePharmacy(event) {
       event.preventDefault();
       this.filterData(this.sites, 10);
@@ -101,6 +113,7 @@ export default {
           mask_child_status: _.filterStatus(array[i].properties.mask_child),
           lat: array[i].geometry.coordinates[1],
           lng: array[i].geometry.coordinates[0],
+          property: array[i].properties,
         });
       }
       this.siteList = this.siteList.concat(tempArray);
@@ -112,10 +125,6 @@ export default {
       if (stock < 50 && stock > 20) status[1] = 1;
       if (stock <= 20) status[0] = 1;
       return status;
-    },
-    getPharmacy(info) {
-      const { lat, lng } = info;
-      this.$store.dispatch('assigned', { lat, lng });
     },
     filterPharmacybyType(type) {
       switch (type) {

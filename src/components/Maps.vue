@@ -18,18 +18,38 @@ export default {
       map: null,
       infoWindow: null,
       moveToPosition: this.$store.getters.sendPanTo,
+      marks: null,
     };
+  },
+  watch: {
+    moveToPosition: {
+      handler(val) {
+        this.lanuchPanTO(val);
+      },
+      deep: true,
+    },
   },
   mounted() {
     this.initMap();
   },
   methods: {
+    lanuchPanTO(value) {
+      const {
+        name, property,
+      } = value;
+      this.map.panTo(value);
+      this.markers.forEach((marker) => {
+        if (marker.title.indexOf(name) === 0) {
+          this.map.setZoom(20);
+          this.infoWindow.setContent(this.createMarker(property));
+          this.infoWindow.open(this.map, marker);
+        }
+      });
+    },
     // 建立地圖
     initMap() {
-      // 從 window google 物件解構 google map
       const { maps } = window.google;
 
-      // 預設初始位置
       const userPos = {
         lat: 25.0456832,
         lng: 121.5440975,
@@ -53,35 +73,34 @@ export default {
     },
     // 建立地標
     setMarker() {
+      // 建立一個新地標
       const _ = this;
-      // 從全域上的 window 將 maps & MarkerClusterer 物件解構
       const { maps } = window.google;
       const { MarkerClusterer } = window;
 
-      // 透過 maps 建構子實體化 infoWindow 實例
       _.infoWindow = new maps.InfoWindow();
-      const markers = this.sites.map((location) => {
+      this.markers = this.sites.map((location) => {
         const { properties, geometry } = location;
         const lat = geometry.coordinates[1];
         const lng = geometry.coordinates[0];
-        // maps 建構子實體化 marker 實例
+
         const marker = new maps.Marker({
           position: { lat, lng },
           title: properties.name,
         });
-        // 為 marker 加上監聽器
+
         maps.event.addListener(marker, 'click', () => {
           _.infoWindow.setContent(_.createMarker(properties));
           _.infoWindow.open(_.map, marker);
         });
         return marker;
       });
-      // eslint-disable-next-line no-new
-      new MarkerClusterer(this.map, markers,
+      const markerCluster = new MarkerClusterer(this.map, this.markers,
         {
           imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
           gridSize: 70,
         });
+      markerCluster();
     },
     createMarker(properties) {
       return `
@@ -101,7 +120,7 @@ export default {
         button = `
         <button 
         style="width:45%;border:0px; padding:5px;border-radius:5px;
-        background:#cdfad3; color:#2baf3c">
+        background:#cdfad3; color:#46C657">
           ${number}
         </button>
         `;
@@ -134,5 +153,9 @@ export default {
 .google-map {
   width: 100%;
   height: 100vh;
+}
+
+.window-title{
+  color: aquamarine;
 }
 </style>

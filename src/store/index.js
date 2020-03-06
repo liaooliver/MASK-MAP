@@ -8,6 +8,8 @@ export default new Vuex.Store({
     panToLocation: {
       lat: null,
       lng: null,
+      name: null,
+      property: null,
     },
     sortByType: { sortBy: 'all' },
   },
@@ -15,6 +17,8 @@ export default new Vuex.Store({
     assigned(state, payload) {
       state.panToLocation.lat = payload.lat;
       state.panToLocation.lng = payload.lng;
+      state.panToLocation.name = payload.name;
+      state.panToLocation.property = payload.property;
     },
     sortByType(state, payload) {
       state.sortByType.sortBy = payload;
