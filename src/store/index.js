@@ -18,7 +18,6 @@ export default new Vuex.Store({
     },
     sortByType(state, payload) {
       state.sortByType.sortBy = payload;
-      console.log(state.sortByType);
     },
   },
   actions: {

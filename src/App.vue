@@ -29,9 +29,6 @@ export default {
     this.$http.get('https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json')
       .then((res) => {
         this.sites = res.data.features;
-        // for (let i = 0; i < 100; i += 1) {
-        //   this.sites.push(res.data.features[i]);
-        // }
       });
   },
 };

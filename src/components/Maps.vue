@@ -20,29 +20,16 @@ export default {
       moveToPosition: this.$store.getters.sendPanTo,
     };
   },
-  watch: {
-    moveToPosition: {
-      handler(val) {
-        console.log(val);
-        // this.lanuchPanTO(val, { zoom: 14 });
-      },
-      deep: true,
-    },
-  },
   mounted() {
     this.initMap();
   },
   methods: {
-    lanuchPanTO(value) {
-      console.log('map.panTo', value);
-      this.map.panTo(value);
-      this.map.zoom = 18;
-      this.infoWindow.open(this.map, value);
-    },
     // 建立地圖
     initMap() {
+      // 從 window google 物件解構 google map
       const { maps } = window.google;
 
+      // 預設初始位置
       const userPos = {
         lat: 25.0456832,
         lng: 121.5440975,
@@ -66,34 +53,35 @@ export default {
     },
     // 建立地標
     setMarker() {
-      // 建立一個新地標
       const _ = this;
+      // 從全域上的 window 將 maps & MarkerClusterer 物件解構
       const { maps } = window.google;
       const { MarkerClusterer } = window;
 
+      // 透過 maps 建構子實體化 infoWindow 實例
       _.infoWindow = new maps.InfoWindow();
       const markers = this.sites.map((location) => {
         const { properties, geometry } = location;
         const lat = geometry.coordinates[1];
         const lng = geometry.coordinates[0];
-
+        // maps 建構子實體化 marker 實例
         const marker = new maps.Marker({
           position: { lat, lng },
           title: properties.name,
         });
-
+        // 為 marker 加上監聽器
         maps.event.addListener(marker, 'click', () => {
           _.infoWindow.setContent(_.createMarker(properties));
           _.infoWindow.open(_.map, marker);
         });
         return marker;
       });
-      const markerCluster = new MarkerClusterer(this.map, markers,
+      // eslint-disable-next-line no-new
+      new MarkerClusterer(this.map, markers,
         {
           imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
           gridSize: 70,
         });
-      markerCluster();
     },
     createMarker(properties) {
       return `
@@ -113,7 +101,7 @@ export default {
         button = `
         <button 
         style="width:45%;border:0px; padding:5px;border-radius:5px;
-        background:#cdfad3; color:#46C657">
+        background:#cdfad3; color:#2baf3c">
           ${number}
         </button>
         `;
@@ -146,9 +134,5 @@ export default {
 .google-map {
   width: 100%;
   height: 100vh;
-}
-
-.window-title{
-  color: aquamarine;
 }
 </style>

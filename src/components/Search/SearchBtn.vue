@@ -3,19 +3,19 @@
         <div class="SearchBtn__group">
             <button
             class="SearchBtn__group--disabled"
-             :class="{ 'SearchBtn__group--active': style.isAll}"
+             :class="{ 'SearchBtn__group--active': style.all}"
                 @click.prevent="searchPharmacy($event,'all')">
                 所有口罩
             </button>
             <button
             class="SearchBtn__group--disabled"
-             :class="{ 'SearchBtn__group--active': style.isAdult}"
+             :class="{ 'SearchBtn__group--active': style.adult}"
                 @click.prevent="searchPharmacy($event,'adult')">
                 成人口罩
             </button>
             <button
             class="SearchBtn__group--disabled"
-             :class="{ 'SearchBtn__group--active': style.isChild}"
+             :class="{ 'SearchBtn__group--active': style.child}"
                 @click.prevent="searchPharmacy($event,'child')">
                 兒童口罩
             </button>
@@ -28,9 +28,9 @@ export default {
   data() {
     return {
       style: {
-        isAll: true,
-        isAdult: false,
-        isChild: false,
+        all: true,
+        adult: false,
+        child: false,
       },
     };
   },
@@ -38,12 +38,11 @@ export default {
     searchPharmacy(event, type) {
       event.preventDefault();
       this.$store.dispatch('sortByType', type);
-      // eslint-disable-next-line no-restricted-syntax
-      // eslint-disable-next-line guard-for-in
-      // for (key in this.style) {
-      //   this.style[key] = false;
-      // };
-      // this.style[type] = true;
+      const keys = Object.keys(this.style);
+      keys.forEach((key) => {
+        this.style[key] = false;
+      });
+      this.style[type] = true;
     },
   },
 };

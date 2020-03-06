@@ -5,8 +5,9 @@
             type="text"
             v-model="pharmacy"
             placeholder="搜尋區域 , 地址 , 藥局"
+            @change="searchPharmacy"
         >
-            <i class="SearchField__search--icon" @click="searchPharmacy(pharmacy)">
+            <i class="SearchField__search--icon" @click="searchPharmacy">
                 <img src="../../assets/Icon_search.svg" alt="" srcset="">
             </i>
         </div>
